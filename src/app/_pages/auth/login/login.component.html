@@ -1,0 +1,58 @@
+<div class="h-screen w-screen flex items-center justify-center bg-cover bg-center">
+  <ion-card class="relative p-8 bg-gray-900 rounded-lg shadow-lg max-w-sm w-full">
+    <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLogin()" class="flex flex-col items-center">
+      <h2 class="text-2xl font-bold text-white mb-6">Inicia sesión</h2>
+
+      <!-- Email Input -->
+      <div class="w-full mb-4">
+        <ion-input
+          formControlName="email"
+          type="email"
+          label="Correo Electrónico"
+          label-placement="floating"
+          fill="outline"
+          placeholder="Ingrese su Correo Electrónico"
+          class="bg-gray-800 text-white w-full"
+        ></ion-input>
+        <div *ngIf="loginForm.controls['email'].touched && loginForm.controls['email']?.errors?.['required']" class="text-red-500 mt-1">
+          El correo es requerido.
+        </div>
+        <div *ngIf="loginForm.controls['email']?.errors?.['email']" class="text-red-500 mt-1">
+          Ingresa un formato de correo válido.
+        </div>
+      </div>
+
+      <!-- Password Input -->
+      <div class="w-full mb-6">
+        <ion-input
+          formControlName="password"
+          type="password"
+          label="Contraseña"
+          label-placement="floating"
+          fill="outline"
+          placeholder="Ingrese su Contraseña"
+          class="bg-gray-800 text-white w-full"
+        ></ion-input>
+        <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password']?.errors?.['required']" class="text-red-500 mt-1">
+          La contraseña es requerida.
+        </div>
+        <div *ngIf="loginForm.controls['password']?.errors?.['minlength']" class="text-red-500 mt-1">
+          La contraseña debe tener al menos 8 caracteres.
+        </div>
+        <div *ngIf="loginForm.controls['password']?.errors?.['maxlength']" class="text-red-500 mt-1">
+          La contraseña no puede tener más de 20 caracteres.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <ion-button
+        [disabled]="!loginForm.valid"
+        type="submit"
+        color="tertiary"
+        class="w-full mt-4"
+      >
+        ¡Iniciar sesión!
+      </ion-button>
+    </form>
+  </ion-card>
+</div>

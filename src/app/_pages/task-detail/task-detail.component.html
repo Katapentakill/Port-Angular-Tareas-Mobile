@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="text-white">Task Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="task" class="p-4">
+    <div class="bg-white shadow-md rounded-lg p-4 mb-4">
+      <h2 class="text-xl font-semibold text-black mb-2">{{ task.name }}</h2>
+      <p class="text-black"><strong>Description:</strong> {{ task.description }}</p>
+      <p class="text-black"><strong>Creation Date:</strong> {{ task.creationDate }}</p>
+      <p class="text-black"><strong>Due Date:</strong> {{ task.dueDate }}</p>
+      <p class="text-black"><strong>User ID:</strong> {{ task.userId }}</p>
+      <div class="mt-4">
+        <ion-label class="text-black">Change Status</ion-label>
+        <ion-select
+          [(ngModel)]="selectedStatusId"
+          (ionChange)="changeStatus()"
+          class="bg-black text-white border-none"
+        >
+          <ion-select-option
+            *ngFor="let status of statuses"
+            [value]="status.id"
+            class="text-black pl-4"
+          >
+            {{ status.name }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!task" class="p-4 text-white">
+    Loading task details...
+  </div>
+</ion-content>

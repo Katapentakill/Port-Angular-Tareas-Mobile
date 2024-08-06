@@ -1,0 +1,18 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let status of statuses" class="status-container my-4">
+    <div class="flex justify-center mb-4">
+      <h2 class="text-lg font-semibold text-white">{{ status.name }}</h2>
+    </div>
+    <div class="task-cards-container">
+      <div *ngIf="!status.tasks?.length" class="text-white text-center">
+        No tienes tareas en este estado por ahora
+      </div>
+      <div *ngFor="let task of status.tasks" class="bg-white shadow-md rounded-lg p-4 mb-4 cursor-pointer" (click)="viewTaskDetail(task.id)">
+        <h3 class="text-xl font-semibold text-black">{{ task.name }}</h3>
+      </div>
+    </div>
+  </div>
+</ion-content>
